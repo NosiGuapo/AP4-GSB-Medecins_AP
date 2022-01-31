@@ -1,0 +1,110 @@
+package io.github.nosiguapo.ap4medecins.entities;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import javax.persistence.*;
+
+@Entity
+@Table(
+        schema = "gsb_api",
+        name = "medecins"
+)
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
+public class Medecin {
+    @Id
+    private Long id;
+    private String nom;
+    private String prenom;
+    private String adresse;
+    private String tel;
+    private String spec;
+    @ManyToOne
+    private Departement departement;
+
+    public Medecin(Long id, String nom, String prenom, String adresse, String tel, String spec, Departement departement) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.spec = spec;
+        this.departement = departement;
+    }
+
+    public Medecin(){
+
+    }
+
+    @JsonBackReference
+    public Departement getDepartement(){
+        return departement;
+    }
+
+    public void setDepartement(Departement leDepartement){
+        this.departement = leDepartement;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public void setSpec(String spec) {
+        this.spec = spec;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public String getSpec() {
+        return spec;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Medecin{" +
+//                "id=" + id +
+//                ", nom='" + nom + '\'' +
+//                ", prenom='" + prenom + '\'' +
+//                ", adresse='" + adresse + '\'' +
+//                ", tel='" + tel + '\'' +
+//                ", spec='" + spec + '\'' +
+//                '}';
+//    }
+}
