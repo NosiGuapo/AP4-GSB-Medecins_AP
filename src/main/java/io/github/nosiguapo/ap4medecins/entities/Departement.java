@@ -18,24 +18,19 @@ import java.util.Set;
 )
 public class Departement {
     @Id
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "departements_id_seq"
-//    )
-//    @SequenceGenerator(
-//            name = "departements_id_seq",
-//            sequenceName = "departements_id_seq",
-//            schema = "gsb_api",
-//            // Incrementation by 1
-//            allocationSize = 1,
-//            // Default value of 1
-//            initialValue = 1
-//    )
-//    @Column(
-//            name = "id",
-//            nullable = false,
-//            updatable = false
-//    )
+    @SequenceGenerator(
+            name = "departements_id_seq",
+            sequenceName = "departements_id_seq",
+            schema = "gsb_api",
+            // Incrementation by 1
+            allocationSize = 1,
+            // Default value of 1
+            initialValue = 1
+    )
+    @Column(
+            name = "ID",
+            columnDefinition = "serial"
+    )
     private Long id;
     private String nom;
     @ManyToOne

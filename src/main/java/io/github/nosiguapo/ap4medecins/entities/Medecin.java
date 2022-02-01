@@ -15,6 +15,23 @@ import javax.persistence.*;
         property = "id"
 )
 public class Medecin {
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "medecins_id_seq"
+//    )
+    @SequenceGenerator(
+            name = "medecins_id_seq",
+            sequenceName = "medecins_id_seq",
+            schema = "gsb_api",
+            // Incrementation by 1
+            allocationSize = 1,
+            // Default value of 1
+            initialValue = 1
+    )
+    @Column(
+            name = "ID",
+            columnDefinition = "serial"
+    )
     @Id
     private Long id;
     private String nom;

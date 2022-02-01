@@ -18,21 +18,19 @@ import java.util.Set;
 )
 public class Pays {
     @Id
-//    @GeneratedValue(
-//            strategy = GenerationType.IDENTITY,
-//            generator = "pays_id_seq"
-//    )
-//    @SequenceGenerator(
-//            name = "pays_id_seq",
-//            sequenceName = "pays_id_seq",
-//            schema = "gsb_api",
-//            // Incrementation by 1
-//            allocationSize = 1,
-//            // Default value of 1
-//            initialValue = 1
-//    )
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
+    @SequenceGenerator(
+            name = "pays_id_seq",
+            sequenceName = "pays_id_seq",
+            schema = "gsb_api",
+            // Incrementation by 1
+            allocationSize = 1,
+            // Default value of 1
+            initialValue = 1
+    )
+    @Column(
+            name = "ID",
+            columnDefinition = "serial"
+    )
     private Long id;
     private String nom;
     @OneToMany(mappedBy = "pays")
