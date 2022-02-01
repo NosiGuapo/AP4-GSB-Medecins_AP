@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 // Map the request to a certain url
-@RequestMapping("/gsb/medecin")
+@RequestMapping("/gsb/medecins")
 public class MedecinController {
     private final MedecinService medecinService;
 

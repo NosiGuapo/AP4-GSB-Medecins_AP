@@ -36,4 +36,7 @@ public class MedecinService {
     public List<Medecin> getMedecinByCompleteName(String nom, String prenom){
         return medecinRepository.findByNomAndPrenom(nom, prenom);
     }
+    public List<Medecin> getMedecinBySpeciality(String spec){
+        return medecinRepository.findBySpec(spec);
+    }
 }
