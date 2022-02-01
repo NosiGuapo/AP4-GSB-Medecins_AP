@@ -28,15 +28,15 @@ public class MedecinService {
 
     // Name query
     public List<Medecin> getMedecinByNom(String nom){
-        return medecinRepository.findByNom(nom);
+        return medecinRepository.findByNomOrderByNomAsc(nom);
     }
     public List<Medecin> getMedecinByPrenom(String prenom){
-        return medecinRepository.findByPrenom(prenom);
+        return medecinRepository.findByPrenomOrderByNomAsc(prenom);
     }
     public List<Medecin> getMedecinByCompleteName(String nom, String prenom){
         return medecinRepository.findByNomAndPrenom(nom, prenom);
     }
     public List<Medecin> getMedecinBySpeciality(String spec){
-        return medecinRepository.findBySpec(spec);
+        return medecinRepository.findBySpecOrderByNomAsc(spec);
     }
 }
