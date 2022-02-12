@@ -33,18 +33,18 @@ public class Invitation {
     )
     private Long id;
     private String key;
-    private Integer max_uses;
-    private Integer current_uses;
-    private Date creation_date;
+    private Integer maxuses;
+    private Integer currentuses;
+    private Date creation;
     @ManyToOne
     private User owner;
 
-    public Invitation(Long id, String key, Integer max_uses, Integer current_uses, Date creation_date, User owner) {
+    public Invitation(Long id, String key, Integer max_uses, Integer current_uses, Date creation, User owner) {
         this.id = id;
         this.key = key;
-        this.max_uses = max_uses;
-        this.current_uses = current_uses;
-        this.creation_date = creation_date;
+        this.maxuses = max_uses;
+        this.currentuses = current_uses;
+        this.creation = creation;
         this.owner = owner;
     }
 
@@ -68,28 +68,28 @@ public class Invitation {
         this.key = key;
     }
 
-    public Integer getMax_uses() {
-        return max_uses;
+    public Integer getMaxuses() {
+        return maxuses;
     }
 
-    public void setMax_uses(Integer max_uses) {
-        this.max_uses = max_uses;
+    public void setMaxuses(Integer max_uses) {
+        this.maxuses = max_uses;
     }
 
-    public Integer getCurrent_uses() {
-        return current_uses;
+    public Integer getCurrentuses() {
+        return currentuses;
     }
 
-    public void setCurrent_uses(Integer current_uses) {
-        this.current_uses = current_uses;
+    public void setCurrentuses(Integer current_uses) {
+        this.currentuses = current_uses;
     }
 
-    public Date getCreation_date() {
-        return creation_date;
+    public Date getCreation() {
+        return creation;
     }
 
-    public void setCreation_date(Date creation_date) {
-        this.creation_date = creation_date;
+    public void setCreation(Date creation_date) {
+        this.creation = creation_date;
     }
 
     public User getOwner() {
@@ -105,9 +105,9 @@ public class Invitation {
         return "Invitation{" +
                 "id=" + id +
                 ", key='" + key + '\'' +
-                ", max_uses=" + max_uses +
-                ", current_uses=" + current_uses +
-                ", creation_date=" + creation_date +
+                ", max_uses=" + maxuses +
+                ", current_uses=" + currentuses +
+                ", creation_date=" + creation +
 //                ", owner=" + owner +
                 '}';
     }

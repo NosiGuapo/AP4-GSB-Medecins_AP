@@ -37,18 +37,18 @@ public class User {
     private String username;
     private String mail;
     private String passwd;
-    private Date register_date;
+    private Date register;
     @OneToMany(mappedBy = "owner")
     private List<Invitation> invitation;
 
-    public User(Long id, String lname, String fname, String username, String mail, String passwd, Date register_date, List<Invitation> invitation) {
+    public User(Long id, String lname, String fname, String username, String mail, String passwd, Date register, List<Invitation> invitation) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.username = username;
         this.mail = mail;
         this.passwd = passwd;
-        this.register_date = register_date;
+        this.register = register;
         this.invitation = invitation;
     }
 
@@ -104,12 +104,12 @@ public class User {
         this.passwd = passwd;
     }
 
-    public Date getRegister_date() {
-        return register_date;
+    public Date getRegister() {
+        return register;
     }
 
-    public void setRegister_date(Date register_date) {
-        this.register_date = register_date;
+    public void setRegister(Date register_date) {
+        this.register = register_date;
     }
 
     public List<Invitation> getInvitation() {
@@ -129,7 +129,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", mail='" + mail + '\'' +
                 ", passwd='" + passwd + '\'' +
-                ", register_date=" + register_date +
+                ", register_date=" + register + '\'' +
                 ", invitation=" + invitation +
                 '}';
     }
