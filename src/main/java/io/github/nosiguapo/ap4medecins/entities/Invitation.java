@@ -23,9 +23,9 @@ public class Invitation {
             sequenceName = "invitations_id_seq",
             schema = "gsb_api",
             // Incrementation by 1
-            allocationSize = 1,
+            allocationSize = 1
             // Default value of 1
-            initialValue = 1
+            // initialValue = 1
     )
     @Column(
             name = "ID",

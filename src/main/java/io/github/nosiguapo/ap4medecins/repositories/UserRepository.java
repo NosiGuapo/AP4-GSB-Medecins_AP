@@ -4,7 +4,7 @@ import io.github.nosiguapo.ap4medecins.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -14,5 +14,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByLnameAndFname(String lname, String fname); // Finding with both first and last names
     List<User> findByUsername(String username); // Finding with username only
     List<User> findByFnameAndLnameAndUsername(String fname, String lname, String username); // Finding with all possible name types
-    List<User> findByRegisterIsBetween(@Param("startDate")LocalDate startDate, @Param("endDate") LocalDate endDate ); // Finding users registered between two specific dates
+    List<User> findByRegisterIsBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate ); // Finding users registered between two specific dates
 }
