@@ -1,7 +1,6 @@
 package io.github.nosiguapo.ap4medecins.controllers;
 
 import io.github.nosiguapo.ap4medecins.entities.Invitation;
-import io.github.nosiguapo.ap4medecins.entities.User;
 import io.github.nosiguapo.ap4medecins.services.InvitationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +22,7 @@ public class InvitationController {
         this.invitationService = invitationService;
     }
 
+    @GetMapping()
     public List<Invitation> getAll(){
         return invitationService.getAllInvitations();
     }
