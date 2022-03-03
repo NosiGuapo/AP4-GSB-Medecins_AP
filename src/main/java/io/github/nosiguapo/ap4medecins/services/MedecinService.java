@@ -39,4 +39,13 @@ public class MedecinService {
     public List<Medecin> getMedecinBySpeciality(String spec){
         return medecinRepository.findBySpecOrderByNomAsc(spec);
     }
+
+    public Medecin addMedecin(Medecin newMedecin){
+        return medecinRepository.save(newMedecin);
+    }
+
+    public boolean deleteMedecinById(Long id){
+        medecinRepository.deleteById(id);
+        return true;
+    }
 }
