@@ -113,15 +113,15 @@ public class Medecin {
         return spec;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Medecin{" +
-//                "id=" + id +
-//                ", nom='" + nom + '\'' +
-//                ", prenom='" + prenom + '\'' +
-//                ", adresse='" + adresse + '\'' +
-//                ", tel='" + tel + '\'' +
-//                ", spec='" + spec + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Medecin{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", tel='" + tel + '\'' +
+                ", spec='" + spec + '\'' +
+                '}';
+    }
 }

@@ -22,16 +22,13 @@ public class Departement {
             name = "departements_id_seq",
             sequenceName = "departements_id_seq",
             schema = "gsb_api",
-            // Incrementation by 1
-            allocationSize = 1,
-            // Default value of 1
-            initialValue = 1
+            allocationSize = 1
     )
     @Column(
             name = "ID",
             columnDefinition = "serial"
     )
-    private Long id;
+    private Long id;    
     private String nom;
     @ManyToOne
     private Pays pays;
@@ -79,7 +76,7 @@ public class Departement {
         return "Departement{" +
                 "id=" + id +
                 ", num='" + nom + '\'' +
-//                ", medecins=" + medecins +
+                ", medecins=" + medecins +
                 '}';
     }
 }

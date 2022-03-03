@@ -22,10 +22,7 @@ public class Pays {
             name = "pays_id_seq",
             sequenceName = "pays_id_seq",
             schema = "gsb_api",
-            // Incrementation by 1
-            allocationSize = 1,
-            // Default value of 1
-            initialValue = 1
+            allocationSize = 1
     )
     @Column(
             name = "ID",
@@ -75,7 +72,7 @@ public class Pays {
         return "Pays{" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
-//                ", departement=" + departement +
+                ", departement=" + departement +
                 '}';
     }
 }
