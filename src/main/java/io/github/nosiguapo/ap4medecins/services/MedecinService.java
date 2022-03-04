@@ -28,17 +28,17 @@ public class MedecinService {
 
     // Name query
     public List<Medecin> getMedecinByNom(String nom){
-        return medecinRepository.findByNomOrderByNomAsc(nom);
+        return medecinRepository.findByNomLike("%"+nom+"%");
     }
     public List<Medecin> getMedecinByPrenom(String prenom){
-        return medecinRepository.findByPrenomOrderByPrenomAsc(prenom);
+        return medecinRepository.findByPrenomLike("%"+prenom+"%");
     }
 //    public List<Medecin> getMedecinByCompleteName(String request){
 //        return medecinRepository.findByNomAndPrenomOrderByNomAsc(request);
 //    }
 
     public List<Medecin> getMedecinBySpeciality(String spec){
-        return medecinRepository.findBySpecOrderByNomAsc(spec);
+        return medecinRepository.findBySpecLike("%"+spec+"%");
     }
 
     public Medecin addMedecin(Medecin newMedecin){

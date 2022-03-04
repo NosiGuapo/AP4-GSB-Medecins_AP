@@ -27,15 +27,16 @@ public class UserService {
     }
 
     public List<User> getUsersByName(String name){
-        return userRepository.findByLname(name);
+        // "%" are mentionned inside the services in order to be more flexible with the like method we want to use
+        return userRepository.findByLnameLike("%"+name+"%");
     }
 
     public List<User> getUsersByFname(String fname){
-        return userRepository.findByFname(fname);
+        return userRepository.findByFnameLike("%"+fname+"%");
     }
 
     public List<User> getUserByUsername(String username){
-        return userRepository.findByUsername(username);
+        return userRepository.findByUsernameLike("%"+username+"%");
     }
 
 //    public List<User> getUserByNameAndFname(String request){
