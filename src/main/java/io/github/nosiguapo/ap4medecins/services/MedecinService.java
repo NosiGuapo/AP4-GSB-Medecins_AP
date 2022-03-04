@@ -31,10 +31,10 @@ public class MedecinService {
         return medecinRepository.findByNomOrderByNomAsc(nom);
     }
     public List<Medecin> getMedecinByPrenom(String prenom){
-        return medecinRepository.findByPrenomOrderByNomAsc(prenom);
+        return medecinRepository.findByPrenomOrderByPrenomAsc(prenom);
     }
-    public List<Medecin> getMedecinByCompleteName(String nom, String prenom){
-        return medecinRepository.findByNomAndPrenom(nom, prenom);
+    public List<Medecin> getMedecinByCompleteName(String request){
+        return medecinRepository.findByNomAndPrenomOrderByNom(request);
     }
     public List<Medecin> getMedecinBySpeciality(String spec){
         return medecinRepository.findBySpecOrderByNomAsc(spec);
