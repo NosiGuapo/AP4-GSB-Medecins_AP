@@ -27,21 +27,16 @@ public class UserService {
     }
 
     public List<User> getUsersByName(String name){
-        // "%" are mentionned inside the services in order to be more flexible with the like method we want to use
-        return userRepository.findByLnameLike("%"+name+"%");
+        return userRepository.findByLnameContainingIgnoreCase(name);
     }
 
     public List<User> getUsersByFname(String fname){
-        return userRepository.findByFnameLike("%"+fname+"%");
+        return userRepository.findByFnameContainingIgnoreCase(fname);
     }
 
     public List<User> getUserByUsername(String username){
-        return userRepository.findByUsernameLike("%"+username+"%");
+        return userRepository.findByUsernameContainingIgnoreCase(username);
     }
-
-//    public List<User> getUserByNameAndFname(String request){
-//        return userRepository.findByLnameAndFname(request);
-//    }
 
     public List<User> getUserCreatedBetween(Date date_1, Date date_2){
         return userRepository.findByRegisterIsBetween(date_1, date_2);
