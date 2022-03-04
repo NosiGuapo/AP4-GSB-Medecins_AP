@@ -10,8 +10,8 @@ public interface MedecinRepository extends JpaRepository<Medecin, Long> {
     /* Define all SQL commands in here */
 
     // GET requests
-    List<Medecin> findByNomLike(String lname); // Finding with name only
-    List<Medecin> findByPrenomLike(String fname); // Finding with fname only
+    List<Medecin> findByNomContainingIgnoreCase(String lname); // Finding with name only
+    List<Medecin> findByPrenomContainingIgnoreCase(String fname); // Finding with fname only
 //    List<Medecin> findByNomAndPrenomOrderByNomAsc(String name); // Finding with both name and fname
     List<Medecin> findBySpec(String spec); // Finding with doctor's sector of activity
 

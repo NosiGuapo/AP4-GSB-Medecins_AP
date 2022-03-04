@@ -26,16 +26,14 @@ public class MedecinService {
         return medecinRepository.findById(id);
     }
 
-    // Name query
     public List<Medecin> getMedecinByNom(String nom){
-        return medecinRepository.findByNomLike("%"+nom+"%");
+//        return medecinRepository.findByNomLike("%"+nom+"%");
+        return medecinRepository.findByNomContainingIgnoreCase(nom);
     }
+
     public List<Medecin> getMedecinByPrenom(String prenom){
-        return medecinRepository.findByPrenomLike("%"+prenom+"%");
+        return medecinRepository.findByPrenomContainingIgnoreCase(prenom);
     }
-//    public List<Medecin> getMedecinByCompleteName(String request){
-//        return medecinRepository.findByNomAndPrenomOrderByNomAsc(request);
-//    }
 
     // A list of all domains will be used in order to choose, a single speciality will be sent
     // Since a precise result will be sent, a "LIKE" is unnecessary
