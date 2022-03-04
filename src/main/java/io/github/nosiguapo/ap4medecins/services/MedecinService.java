@@ -37,8 +37,10 @@ public class MedecinService {
 //        return medecinRepository.findByNomAndPrenomOrderByNomAsc(request);
 //    }
 
+    // A list of all domains will be used in order to choose, a single speciality will be sent
+    // Since a precise result will be sent, a "LIKE" is unnecessary
     public List<Medecin> getMedecinBySpeciality(String spec){
-        return medecinRepository.findBySpecLike("%"+spec+"%");
+        return medecinRepository.findBySpec(spec);
     }
 
     public Medecin addMedecin(Medecin newMedecin){
