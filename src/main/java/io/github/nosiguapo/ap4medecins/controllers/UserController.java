@@ -28,9 +28,27 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     // Getting the id precised in the url and turning it into a variable
     public User get(@PathVariable("id") Long id){
         return userService.getUserById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/lname/{lname}")
+    public List<User> getByLname(@PathVariable("lname") String name){
+        // No responsestatus 404 if a list is sent
+        return userService.getUsersByName(name);
+    }
+
+    @GetMapping("/fname/{fname}")
+    public List<User> getByFname(@PathVariable("fname") String name){
+        // No responsestatus 404 if a list is sent
+        return userService.getUsersByFname(name);
+    }
+
+    @GetMapping("/username/{username}")
+    public List<User> getByUsername(@PathVariable("username") String uname){
+        // No responsestatus 404 if a list is sent
+        return userService.getUserByUsername(uname);
     }
 }
