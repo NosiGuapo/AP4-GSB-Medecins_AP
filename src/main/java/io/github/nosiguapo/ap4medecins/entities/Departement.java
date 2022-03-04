@@ -3,6 +3,8 @@ package io.github.nosiguapo.ap4medecins.entities;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -31,10 +33,12 @@ public class Departement {
     private Long id;    
     private String nom;
     @ManyToOne
+    @OnDelete(
+            action = OnDeleteAction.CASCADE
+    )
     private Pays pays;
     @OneToMany(
-            mappedBy = "departement",
-            cascade = CascadeType.REMOVE
+            mappedBy = "departement"
     )
     private Set<Medecin> medecins;
 

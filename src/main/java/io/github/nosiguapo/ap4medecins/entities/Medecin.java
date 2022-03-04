@@ -3,6 +3,9 @@ package io.github.nosiguapo.ap4medecins.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -41,6 +44,9 @@ public class Medecin {
     private String tel;
     private String spec;
     @ManyToOne
+    @OnDelete(
+            action = OnDeleteAction.CASCADE
+    )
     private Departement departement;
 
     public Medecin(Long id, String nom, String prenom, String adresse, String tel, String spec, Departement departement) {

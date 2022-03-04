@@ -31,8 +31,7 @@ public class Pays {
     private Long id;
     private String nom;
     @OneToMany(
-            mappedBy = "pays",
-            cascade = CascadeType.REMOVE
+            mappedBy = "pays"
     )
     private Set<Departement> departement;
 
