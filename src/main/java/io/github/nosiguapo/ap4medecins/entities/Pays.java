@@ -30,7 +30,10 @@ public class Pays {
     )
     private Long id;
     private String nom;
-    @OneToMany(mappedBy = "pays")
+    @OneToMany(
+            mappedBy = "pays",
+            cascade = CascadeType.REMOVE
+    )
     private Set<Departement> departement;
 
     public Pays(Long id, String nom, Set<Departement> departement) {

@@ -32,7 +32,10 @@ public class Departement {
     private String nom;
     @ManyToOne
     private Pays pays;
-    @OneToMany(mappedBy = "departement")
+    @OneToMany(
+            mappedBy = "departement",
+            cascade = CascadeType.REMOVE
+    )
     private Set<Medecin> medecins;
 
 
