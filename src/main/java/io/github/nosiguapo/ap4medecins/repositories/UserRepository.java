@@ -14,9 +14,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // GET
     List<User> findByFname(String fname); // Finding with first name only
     List<User> findByLname(String lname); // Finding with last name only
-    List<User> findByLnameAndFname(String name); // Finding with both first and last names
+//    List<User> findByLnameAndFname(String name); // Finding with both first and last names
     List<User> findByUsername(String username); // Finding with username only
-    List<User> findByFnameAndLnameAndUsername(String name); // Finding with all possible name types
+//    List<User> findByFnameAndLnameAndUsername(String name); // Finding with all possible name types
     List<User> findByRegisterIsBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate ); // Finding users registered between two specific dates
 
     // POST

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -30,10 +31,6 @@ public class UserController {
     @GetMapping("/{id}")
     // Getting the id precised in the url and turning it into a variable
     public User get(@PathVariable("id") Long id){
-        if (userService.getUserById(id).isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        } else {
-            return userService.getUserById(id).get();
-        }
+        return userService.getUserById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 }

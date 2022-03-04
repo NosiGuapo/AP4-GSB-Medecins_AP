@@ -5,6 +5,7 @@ import io.github.nosiguapo.ap4medecins.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +38,11 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public List<User> getUserByNameAndFname(String request){
-        return userRepository.findByLnameAndFname(request);
+//    public List<User> getUserByNameAndFname(String request){
+//        return userRepository.findByLnameAndFname(request);
+//    }
+
+    public List<User> getUserCreatedBetween(Date date_1, Date date_2){
+        return userRepository.findByRegisterIsBetween(date_1, date_2);
     }
 }
