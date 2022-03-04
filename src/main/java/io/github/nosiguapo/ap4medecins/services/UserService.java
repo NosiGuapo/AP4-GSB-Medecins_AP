@@ -37,7 +37,7 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public List<User> getUserByNameAndFname(String name, String fname){
-        return userRepository.findByLnameAndFname(name, fname);
+    public List<User> getUserByNameAndFname(String request){
+        return userRepository.findByLnameAndFname(request);
     }
 }
