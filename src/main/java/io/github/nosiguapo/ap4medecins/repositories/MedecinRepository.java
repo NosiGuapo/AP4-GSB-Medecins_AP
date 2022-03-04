@@ -1,6 +1,5 @@
 package io.github.nosiguapo.ap4medecins.repositories;
 
-import com.sun.istack.NotNull;
 import io.github.nosiguapo.ap4medecins.entities.Medecin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
