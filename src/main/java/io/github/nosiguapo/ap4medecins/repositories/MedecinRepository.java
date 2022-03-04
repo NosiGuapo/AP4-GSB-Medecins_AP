@@ -12,7 +12,7 @@ public interface MedecinRepository extends JpaRepository<Medecin, Long> {
     // GET requests
     List<Medecin> findByNomOrderByNomAsc(String lname); // Finding with name only
     List<Medecin> findByPrenomOrderByPrenomAsc(String fname); // Finding with fname only
-    List<Medecin> findByNomAndPrenomOrderByNom(String name); // Finding with both name and fname
+//    List<Medecin> findByNomAndPrenomOrderByNomAsc(String name); // Finding with both name and fname
     List<Medecin> findBySpecOrderByNomAsc(String spec); // Finding with doctor's sector of activity
 
     // POST requests

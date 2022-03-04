@@ -33,9 +33,10 @@ public class MedecinService {
     public List<Medecin> getMedecinByPrenom(String prenom){
         return medecinRepository.findByPrenomOrderByPrenomAsc(prenom);
     }
-    public List<Medecin> getMedecinByCompleteName(String request){
-        return medecinRepository.findByNomAndPrenomOrderByNom(request);
-    }
+//    public List<Medecin> getMedecinByCompleteName(String request){
+//        return medecinRepository.findByNomAndPrenomOrderByNomAsc(request);
+//    }
+
     public List<Medecin> getMedecinBySpeciality(String spec){
         return medecinRepository.findBySpecOrderByNomAsc(spec);
     }
