@@ -50,7 +50,7 @@ public class MedecinController {
         return medecinService.getMedecinBySpeciality(spec);
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public boolean delete(@PathVariable("id") Long id){
         // We check if the doctor exists before executing the POST request
         get(id);
