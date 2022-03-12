@@ -50,4 +50,9 @@ public class MedecinService {
         medecinRepository.deleteById(id);
         return true;
     }
+
+    // Edit doctor
+    public Medecin save(Medecin newDoctor) {
+        return medecinRepository.save(newDoctor);
+    }
 }

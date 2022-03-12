@@ -4,11 +4,11 @@ import io.github.nosiguapo.ap4medecins.entities.Medecin;
 import io.github.nosiguapo.ap4medecins.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 // Map the request to a certain url
@@ -23,37 +23,52 @@ public class MedecinController {
 
     // We are using the standard pre-defined mapping for this task
     @GetMapping()
-    public List<Medecin> getAll(){
+    public List<Medecin> getAll() {
         return medecinService.getAllMedecins();
     }
 
     // We want to display the informations concerning a specific doctor, we get the mapping of the id suppiled after the default mapping
     @GetMapping("/id/{id}")
     // Getting the id precised in the url and turning it into a variable
-    public Medecin get(@PathVariable("id") Long id){
+    public Medecin get(@PathVariable("id") Long id) {
         // If no doctor is found, return error 404
         return medecinService.getMedecinByid(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("lname/{lname}")
-    public List<Medecin> getByName(@PathVariable("lname") String name){
+    public List<Medecin> getByName(@PathVariable("lname") String name) {
         return medecinService.getMedecinByNom(name);
     }
 
     @GetMapping("fname/{fname}")
-    public List<Medecin> getByFName(@PathVariable("fname") String name){
+    public List<Medecin> getByFName(@PathVariable("fname") String name) {
         return medecinService.getMedecinByPrenom(name);
     }
 
     @GetMapping("spec/{spec}")
-    public List<Medecin> getBySectorOfActivity(@PathVariable("spec") String spec){
+    public List<Medecin> getBySectorOfActivity(@PathVariable("spec") String spec) {
         return medecinService.getMedecinBySpeciality(spec);
     }
 
+    // Delete doctor
     @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable("id") Long id){
+    // No need to precise the pathvariable when only a single one is present
+    public boolean delete(@PathVariable Long id) {
         // We check if the doctor exists before executing the POST request
         get(id);
         return medecinService.deleteMedecinById(id);
+    }
+
+    // Edit doctor
+    @PutMapping("/edit/{id}")
+    public Optional<Medecin> editDoctor(@PathVariable Long id, @RequestBody Medecin newDoctor) {
+        return Optional.ofNullable(medecinService.getMedecinByid(id).map(medecin -> {
+            medecin.setNom(newDoctor.getNom());
+            medecin.setPrenom(newDoctor.getPrenom());
+            medecin.setSpec(newDoctor.getSpec());
+            medecin.setAdresse(newDoctor.getAdresse());
+            medecin.setDepartement(newDoctor.getDepartement());
+            return medecinService.save(medecin);
+        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
     }
 }
