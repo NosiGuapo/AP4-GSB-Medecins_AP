@@ -129,6 +129,7 @@ public class Medecin {
                 ", adresse='" + adresse + '\'' +
                 ", tel='" + tel + '\'' +
                 ", spec='" + spec + '\'' +
+//                ", departement=" + departement +
                 '}';
     }
 }
