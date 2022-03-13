@@ -67,6 +67,7 @@ public class MedecinController {
             medecin.setPrenom(newDoctor.getPrenom());
             medecin.setSpec(newDoctor.getSpec());
             medecin.setAdresse(newDoctor.getAdresse());
+            medecin.setTel(newDoctor.getTel());
             medecin.setDepartement(newDoctor.getDepartement());
             return medecinService.save(medecin);
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
