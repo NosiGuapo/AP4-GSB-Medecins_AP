@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
@@ -30,12 +32,17 @@ public class Departement {
             name = "ID",
             columnDefinition = "serial"
     )
-    private Long id;    
+    private Long id;
+
+    @NotBlank(message="Veuillez préciser un nom.")
+    @Length(min = 2, message = "Le nom doit comporter au moins 2 caractères")
     private String nom;
+
     @ManyToOne
     @OnDelete(
             action = OnDeleteAction.CASCADE
     )
+    @NotBlank(message="Aucun pays d'appartenance n'est spécifié")
     private Pays pays;
     @OneToMany(
             mappedBy = "departement"

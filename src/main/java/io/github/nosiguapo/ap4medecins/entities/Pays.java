@@ -3,8 +3,10 @@ package io.github.nosiguapo.ap4medecins.entities;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
@@ -29,7 +31,11 @@ public class Pays {
             columnDefinition = "serial"
     )
     private Long id;
+
+    @NotBlank(message="Veuillez préciser un nom.")
+    @Length(min = 4, message = "Le nom doit comporter au moins 3 caractères")
     private String nom;
+
     @OneToMany(
             mappedBy = "pays"
     )
