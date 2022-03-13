@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,7 +62,7 @@ public class MedecinController {
 
     // Edit doctor
     @PutMapping("/edit/{id}")
-    public Optional<Medecin> editDoctor(@PathVariable Long id, @RequestBody Medecin newDoctor) {
+    public Optional<Medecin> editDoctor(@Valid @PathVariable Long id, @RequestBody Medecin newDoctor) {
         return Optional.ofNullable(medecinService.getMedecinByid(id).map(medecin -> {
             medecin.setNom(newDoctor.getNom());
             medecin.setPrenom(newDoctor.getPrenom());

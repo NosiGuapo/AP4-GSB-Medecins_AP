@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(
@@ -38,15 +40,28 @@ public class Medecin {
     )
     @Id
     private Long id;
+
+    @NotBlank(message="Veuillez préciser un nom.")
+    @Length(min = 2, message = "Le nom doit comporter au moins 3 caractères")
     private String nom;
+
+    @NotBlank(message="Veuillez préciser un prénom.")
+    @Length(min = 2, message = "Le prénom doit comporter au moins 3 caractères")
     private String prenom;
+
+    @NotBlank(message="Veuillez préciser une adresse.")
+    @Length(min = 10, message = "L'adresse doit comporter au moins une dizaine de caractères'")
     private String adresse;
+
+    @NotBlank(message="Veuillez préciser un numéro de téléphone.")
+    // Regex will be used on this category
     private String tel;
     private String spec;
     @ManyToOne
     @OnDelete(
             action = OnDeleteAction.CASCADE
     )
+    @NotBlank(message="Veuillez préciser un département.")
     private Departement departement;
 
     public Medecin(Long id, String nom, String prenom, String adresse, String tel, String spec, Departement departement) {
