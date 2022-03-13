@@ -18,7 +18,7 @@ public class MedecinService {
     }
 
     public List<Medecin> getAllMedecins(){
-        return medecinRepository.findAll();
+        return medecinRepository.findAllByOrderByNomAsc();
     }
 
     // The result can be null, Optional parametter must be specified to handle this kind of potential error
