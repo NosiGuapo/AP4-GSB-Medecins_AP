@@ -12,10 +12,6 @@ import java.util.List;
         schema = "gsb_api",
         name = "users"
 )
-@JsonIdentityInfo(
-        property = "id",
-        generator = ObjectIdGenerators.PropertyGenerator.class
-)
 public class User {
     @Id
     @SequenceGenerator(

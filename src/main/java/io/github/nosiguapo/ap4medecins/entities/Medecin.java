@@ -16,10 +16,6 @@ import javax.validation.constraints.NotBlank;
         schema = "gsb_api",
         name = "medecins"
 )
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
 public class Medecin {
 //    @GeneratedValue(
 //            strategy = GenerationType.SEQUENCE,

@@ -12,10 +12,6 @@ import java.util.Set;
         schema = "gsb_api",
         name = "invitations"
 )
-@JsonIdentityInfo(
-        property = "id",
-        generator = ObjectIdGenerators.PropertyGenerator.class
-)
 public class Invitation {
     @Id
     @SequenceGenerator(
