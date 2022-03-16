@@ -29,7 +29,7 @@ public class MedecinController {
     }
 
     // We want to display the informations concerning a specific doctor, we get the mapping of the id suppiled after the default mapping
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     // Getting the id precised in the url and turning it into a variable
     public Medecin get(@PathVariable("id") Long id) {
         // If no doctor is found, return error 404
@@ -52,7 +52,7 @@ public class MedecinController {
     }
 
     // Delete doctor
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     // No need to precise the pathvariable when only a single one is present
     public boolean delete(@PathVariable Long id) {
         // We check if the doctor exists before executing the POST request
@@ -61,7 +61,7 @@ public class MedecinController {
     }
 
     // Edit doctor
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}")
     public Optional<Medecin> editDoctor(@Valid @PathVariable Long id, @RequestBody Medecin newDoctor) {
         return Optional.ofNullable(medecinService.getMedecinByid(id).map(medecin -> {
             medecin.setNom(newDoctor.getNom());
