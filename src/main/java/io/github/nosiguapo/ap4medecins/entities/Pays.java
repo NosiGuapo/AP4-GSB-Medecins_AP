@@ -51,7 +51,7 @@ public class Pays {
     public Pays() {
     }
 
-    @JsonManagedReference
+    @JsonBackReference
     public Set<Departement> getDepartements() {
         return departement;
     }

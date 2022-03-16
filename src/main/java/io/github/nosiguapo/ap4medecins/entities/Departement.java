@@ -17,10 +17,6 @@ import java.util.Set;
         name = "departements",
         schema = "gsb_api"
 )
-@JsonIdentityInfo(
-        property = "id",
-        generator = ObjectIdGenerators.PropertyGenerator.class
-)
 public class Departement {
     @Id
     @SequenceGenerator(
@@ -77,7 +73,7 @@ public class Departement {
         this.nom = nom;
     }
 
-    @JsonBackReference
+    @JsonManagedReference
     public Pays getPays() {
         return pays;
     }
@@ -86,7 +82,7 @@ public class Departement {
         this.pays = pays;
     }
 
-    @JsonManagedReference
+    @JsonBackReference
     public Set<Medecin> getMedecins() {
         return medecins;
     }
@@ -99,7 +95,8 @@ public class Departement {
     public String toString() {
         return "Departement{" +
                 "id=" + id +
-                ", num='" + nom + '\'' +
+                ", nom='" + nom + '\'' +
+                ", pays=" + pays +
                 ", medecins=" + medecins +
                 '}';
     }

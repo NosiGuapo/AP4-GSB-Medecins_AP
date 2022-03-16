@@ -79,7 +79,7 @@ public class Medecin {
 
     }
 
-    @JsonBackReference
+    @JsonManagedReference
     public Departement getDepartement(){
         return departement;
     }
@@ -145,7 +145,7 @@ public class Medecin {
                 ", adresse='" + adresse + '\'' +
                 ", tel='" + tel + '\'' +
                 ", spec='" + spec + '\'' +
-//                ", departement=" + departement +
+                ", departement=" + departement +
                 '}';
     }
 }
