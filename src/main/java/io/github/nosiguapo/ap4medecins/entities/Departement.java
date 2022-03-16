@@ -1,5 +1,6 @@
 package io.github.nosiguapo.ap4medecins.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -60,20 +61,29 @@ public class Departement {
         this.medecins = medecins;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setNum(String nom) {
-        this.nom = nom;
-    }
-
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNom() {
         return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    @JsonBackReference
+    public Pays getPays() {
+        return pays;
+    }
+
+    public void setPays(Pays pays) {
+        this.pays = pays;
     }
 
     @JsonManagedReference
