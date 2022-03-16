@@ -135,17 +135,4 @@ public class Medecin {
     public String getSpec() {
         return spec;
     }
-
-    @Override
-    public String toString() {
-        return "Medecin{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", tel='" + tel + '\'' +
-                ", spec='" + spec + '\'' +
-                ", departement=" + departement +
-                '}';
-    }
 }

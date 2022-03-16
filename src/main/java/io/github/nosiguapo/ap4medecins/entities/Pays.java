@@ -75,13 +75,4 @@ public class Pays {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
-    @Override
-    public String toString() {
-        return "Pays{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", departement=" + departement +
-                '}';
-    }
 }

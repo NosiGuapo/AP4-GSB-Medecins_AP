@@ -99,16 +99,4 @@ public class Invitation {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-
-    @Override
-    public String toString() {
-        return "Invitation{" +
-                "id=" + id +
-                ", key='" + key + '\'' +
-                ", max_uses=" + maxuses +
-                ", current_uses=" + currentuses +
-                ", creation_date=" + creation +
-//                ", owner=" + owner +
-                '}';
-    }
 }

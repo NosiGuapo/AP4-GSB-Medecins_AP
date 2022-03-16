@@ -90,14 +90,4 @@ public class Departement {
     public void setMedecins(Set<Medecin> medecins) {
         this.medecins = medecins;
     }
-
-    @Override
-    public String toString() {
-        return "Departement{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", pays=" + pays +
-                ", medecins=" + medecins +
-                '}';
-    }
 }
