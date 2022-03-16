@@ -1,5 +1,6 @@
 package io.github.nosiguapo.ap4medecins.repositories;
 
+import io.github.nosiguapo.ap4medecins.entities.Departement;
 import io.github.nosiguapo.ap4medecins.entities.Medecin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
@@ -13,8 +14,8 @@ public interface MedecinRepository extends JpaRepository<Medecin, Long> {
     List<Medecin> findAllByOrderByNomAsc();
     List<Medecin> findByNomContainingIgnoreCase(String lname); // Finding with name only
     List<Medecin> findByPrenomContainingIgnoreCase(String fname); // Finding with fname only
-//    List<Medecin> findByNomAndPrenomOrderByNomAsc(String name); // Finding with both name and fname
     List<Medecin> findBySpec(String spec); // Finding with doctor's sector of activity
+    List<Medecin> findByDepartement(Departement departement);
     // POST requests
     void deleteById(@NonNull Long id); // Delete Doctor by its Id
 }
