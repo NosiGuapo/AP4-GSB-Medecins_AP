@@ -12,9 +12,9 @@ public interface MedecinRepository extends JpaRepository<Medecin, Long> {
 
     // GET requests
     List<Medecin> findAllByOrderByNomAsc();
-    List<Medecin> findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(String lname, String fname); // Finding with name only
-    List<Medecin> findByPrenomContainingIgnoreCase(String fname); // Finding with fname only
-    List<Medecin> findBySpec(String spec); // Finding with doctor's sector of activity
+    List<Medecin> findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(String lname, String fname); //
+    List<Medecin> findBySpecContainingIgnoreCase(String spec);
+    List<Medecin> findBySpec(String spec);
     List<Medecin> findByDepartement(Departement departement);
     // POST requests
     void deleteById(@NonNull Long id); // Delete Doctor by its Id
