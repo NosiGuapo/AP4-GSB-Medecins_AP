@@ -25,4 +25,9 @@ public class PaysService {
     public Optional<Pays> getPaysById(Long id){
         return paysRepository.findById(id);
     }
+
+    public boolean deletePaysById(Long id){
+        paysRepository.deleteById(id);
+        return true;
+    }
 }
