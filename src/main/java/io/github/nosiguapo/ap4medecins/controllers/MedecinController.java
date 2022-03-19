@@ -36,14 +36,9 @@ public class MedecinController {
         return medecinService.getMedecinByid(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("lname/{lname}")
-    public List<Medecin> getByName(@PathVariable("lname") String name) {
+    @GetMapping("name/{name}")
+    public List<Medecin> getByFullName(@PathVariable("name") String name) {
         return medecinService.getMedecinByNom(name);
-    }
-
-    @GetMapping("fname/{fname}")
-    public List<Medecin> getByFName(@PathVariable("fname") String name) {
-        return medecinService.getMedecinByPrenom(name);
     }
 
     @GetMapping("spec/{spec}")

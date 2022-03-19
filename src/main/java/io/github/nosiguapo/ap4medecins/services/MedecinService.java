@@ -30,7 +30,7 @@ public class MedecinService {
     public List<Medecin> getMedecinByNom(String nom){
 //        "%" are mentionned inside the services in order to be more flexible with the like method we want to use
 //        return medecinRepository.findByNomLike("%"+nom+"%");
-        return medecinRepository.findByNomContainingIgnoreCase(nom);
+        return medecinRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(nom, nom);
     }
 
     public List<Medecin> getMedecinByPrenom(String prenom){
