@@ -39,8 +39,12 @@ public class MedecinService {
 
     // A list of all domains will be used in order to choose, a single speciality will be sent
     // Since a precise result will be sent, a "LIKE" is unnecessary
-    public List<Medecin> getMedecinBySpeciality(String spec){
-        return medecinRepository.findBySpecContainingIgnoreCase(spec);
+    public List<Medecin> getMedecinsBySpeciality(String specName){
+        return medecinRepository.findBySpecIgnoreCase(specName);
+    }
+
+    public List<String> getAllSpecs(){
+        return medecinRepository.findAllSpecs();
     }
 
     public Medecin addMedecin(Medecin newMedecin){

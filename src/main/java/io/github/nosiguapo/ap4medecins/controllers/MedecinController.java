@@ -36,14 +36,19 @@ public class MedecinController {
         return medecinService.getMedecinByid(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("name/{name}")
-    public List<Medecin> getByFullName(@PathVariable("name") String name) {
+    @GetMapping("/name")
+    public List<Medecin> getByFullName(@RequestParam(defaultValue = "") String name) {
         return medecinService.getMedecinByNom(name);
     }
 
-    @GetMapping("spec/{spec}")
-    public List<Medecin> getBySectorOfActivity(@PathVariable("spec") String spec) {
-        return medecinService.getMedecinBySpeciality(spec);
+    @GetMapping("/spec")
+    public List<Medecin> getDoctorsBySectorOfActivity(@RequestParam(defaultValue = "") String spec){
+        return medecinService.getMedecinsBySpeciality(spec);
+    }
+
+    @GetMapping("/specs")
+    public List<String> getAllSpecs(){
+        return medecinService.getAllSpecs();
     }
 
     // Delete doctor
