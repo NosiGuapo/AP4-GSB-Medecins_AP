@@ -3,8 +3,12 @@ package io.github.nosiguapo.ap4medecins.services;
 import io.github.nosiguapo.ap4medecins.entities.Pays;
 import io.github.nosiguapo.ap4medecins.repositories.PaysRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,5 +33,17 @@ public class PaysService {
     public boolean deletePaysById(Long id){
         paysRepository.deleteById(id);
         return true;
+    }
+
+    @Transactional
+    public Pays addCountry(Pays country){
+        // If a country already exists with a similar name, we send an error
+        if (paysRepository.findByNomIgnoreCase(country.getNom()).isEmpty()){
+            Long countryId = paysRepository.findMaxId()+1;
+            country.setId(countryId);
+            return paysRepository.save(country);
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
     }
 }

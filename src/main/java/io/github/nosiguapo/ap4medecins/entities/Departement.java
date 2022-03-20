@@ -71,7 +71,7 @@ public class Departement {
         this.nom = nom;
     }
 
-    @JsonManagedReference
+//    @JsonManagedReference
     public Pays getPays() {
         return pays;
     }

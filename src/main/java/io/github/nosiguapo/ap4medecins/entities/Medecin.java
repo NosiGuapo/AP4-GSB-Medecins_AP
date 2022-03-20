@@ -72,7 +72,7 @@ public class Medecin {
 
     }
 
-    @JsonManagedReference
+//    @JsonManagedReference
     public Departement getDepartement(){
         return departement;
     }

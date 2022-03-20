@@ -1,5 +1,6 @@
 package io.github.nosiguapo.ap4medecins.controllers;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import io.github.nosiguapo.ap4medecins.entities.Pays;
 import io.github.nosiguapo.ap4medecins.services.PaysService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,11 @@ public class PaysController {
     public boolean delete(@PathVariable Long id) {
         get(id);
         return paysService.deletePaysById(id);
+    }
+
+    @PostMapping(consumes = {"application/json"})
+    @ResponseStatus(HttpStatus.CREATED)
+    public Pays create(@RequestBody Pays newCountry){
+        return paysService.addCountry(newCountry);
     }
 }
