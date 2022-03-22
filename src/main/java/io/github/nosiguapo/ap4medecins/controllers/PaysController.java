@@ -1,6 +1,7 @@
 package io.github.nosiguapo.ap4medecins.controllers;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
+import io.github.nosiguapo.ap4medecins.entities.Medecin;
+import io.github.nosiguapo.ap4medecins.services.MedecinService;
 import io.github.nosiguapo.ap4medecins.entities.Pays;
 import io.github.nosiguapo.ap4medecins.services.PaysService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,26 +16,34 @@ import java.util.List;
 @RequestMapping("/gsb/pays")
 public class PaysController {
     private final PaysService paysService;
+    private final MedecinService medecinService;
 
     @Autowired
-    public PaysController(PaysService paysService) {
+    public PaysController(PaysService paysService, MedecinService medecinService) {
         this.paysService = paysService;
+        this.medecinService = medecinService;
     }
 
     // We are using the standard pre-defined mapping for this task
     @GetMapping()
-    public List<Pays> getAll(){
+    public List<Pays> getAll() {
         return paysService.getAllPays();
     }
 
     @GetMapping("/{id}")
     // Getting the id precised in the url and turning it into a variable
-    public Pays get(@PathVariable("id") Long id){
-        if (paysService.getPaysById(id).isEmpty()){
+    public Pays get(@PathVariable("id") Long id) {
+        if (paysService.getPaysById(id).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
             return paysService.getPaysById(id).get();
         }
+    }
+
+    @GetMapping("/{id}/medecins")
+    public List<Medecin> getMedecinsOfPays(@PathVariable("id") Long id) {
+        get(id);
+        return medecinService.getMedecinByPays(get(id));
     }
 
     @DeleteMapping("/{id}")
@@ -46,7 +55,7 @@ public class PaysController {
 
     @PostMapping(consumes = {"application/json"})
     @ResponseStatus(HttpStatus.CREATED)
-    public Pays create(@RequestBody Pays newCountry){
+    public Pays create(@RequestBody Pays newCountry) {
         return paysService.addCountry(newCountry);
     }
 }

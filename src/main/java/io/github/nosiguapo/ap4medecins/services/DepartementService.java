@@ -18,7 +18,7 @@ public class DepartementService {
     }
 
     public List<Departement> getAllDepartements(){
-        return departementRepository.findAll();
+        return departementRepository.findAllByOrderByNomAsc();
     }
 
     // The result can be null, Optional parametter must be specified to handle this kind of potential error

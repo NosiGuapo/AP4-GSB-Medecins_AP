@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/gsb/departements")
@@ -39,11 +38,7 @@ public class DepartementController {
 
     @GetMapping("/{id}/medecins")
     public List<Medecin> getMedecinsOfDepartement(@PathVariable("id") Long id) {
-        Optional<Departement> departementOptional = departementService.getDepartementById(id);
-        if (departementOptional.isPresent()) {
-            return medecinService.getMedecinByDepartement(departementOptional.get());
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+        get(id);
+        return medecinService.getMedecinByDepartement(get(id));
     }
 }

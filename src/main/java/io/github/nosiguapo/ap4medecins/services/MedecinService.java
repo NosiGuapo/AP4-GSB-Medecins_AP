@@ -2,6 +2,7 @@ package io.github.nosiguapo.ap4medecins.services;
 
 import io.github.nosiguapo.ap4medecins.entities.Departement;
 import io.github.nosiguapo.ap4medecins.entities.Medecin;
+import io.github.nosiguapo.ap4medecins.entities.Pays;
 import io.github.nosiguapo.ap4medecins.repositories.MedecinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,13 @@ public class MedecinService {
 
     public List<Medecin> getMedecinByDepartement(Departement departement) {
         return medecinRepository.findByDepartement(departement);
+    }
+
+    public List<Medecin> getMedecinByPays(Pays pays) {
+/*
+        return medecinRepository.findByPays(pays);
+*/
+        return null;
     }
 
     // A list of all domains will be used in order to choose, a single speciality will be sent
