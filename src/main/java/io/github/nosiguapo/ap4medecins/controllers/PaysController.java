@@ -60,6 +60,12 @@ public class PaysController {
         }
     }
 
+    @GetMapping("/{id}/departements")
+    public List<Departement> getDepartementsOfPays(@PathVariable Long id){
+        get(id);
+        return departementService.getDepartementsByCountryId(id);
+    }
+
     @DeleteMapping("/{id}")
     // No need to precise the pathvariable when only a single one is present
     public boolean delete(@PathVariable Long id) {
