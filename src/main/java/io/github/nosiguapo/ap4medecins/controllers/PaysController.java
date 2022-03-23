@@ -1,6 +1,8 @@
 package io.github.nosiguapo.ap4medecins.controllers;
 
+import io.github.nosiguapo.ap4medecins.entities.Departement;
 import io.github.nosiguapo.ap4medecins.entities.Medecin;
+import io.github.nosiguapo.ap4medecins.services.DepartementService;
 import io.github.nosiguapo.ap4medecins.services.MedecinService;
 import io.github.nosiguapo.ap4medecins.entities.Pays;
 import io.github.nosiguapo.ap4medecins.services.PaysService;
@@ -9,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
 // Map the request to a certain url
@@ -17,11 +19,13 @@ import java.util.List;
 public class PaysController {
     private final PaysService paysService;
     private final MedecinService medecinService;
+    private final DepartementService departementService;
 
     @Autowired
-    public PaysController(PaysService paysService, MedecinService medecinService) {
+    public PaysController(PaysService paysService, MedecinService medecinService, DepartementService departementService) {
         this.paysService = paysService;
         this.medecinService = medecinService;
+        this.departementService = departementService;
     }
 
     // We are using the standard pre-defined mapping for this task
@@ -42,8 +46,18 @@ public class PaysController {
 
     @GetMapping("/{id}/medecins")
     public List<Medecin> getMedecinsOfPays(@PathVariable("id") Long id) {
-        get(id);
-        return medecinService.getMedecinByPays(get(id));
+        Optional<Pays> paysOptional = paysService.getPaysById(id);
+        List<Departement> departementList = departementService.getDepartementsByCountryId(id);
+
+        if (departementList.isEmpty() || paysOptional.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else {
+            List<Medecin> medecinsByDepartements = new ArrayList<>();
+            for (Departement d : departementList){
+                medecinsByDepartements.addAll(medecinService.getMedecinsByDepartement(d.getId()));
+            }
+            return medecinsByDepartements;
+        }
     }
 
     @DeleteMapping("/{id}")

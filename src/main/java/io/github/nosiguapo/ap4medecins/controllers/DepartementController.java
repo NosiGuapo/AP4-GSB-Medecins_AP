@@ -39,6 +39,6 @@ public class DepartementController {
     @GetMapping("/{id}/medecins")
     public List<Medecin> getMedecinsOfDepartement(@PathVariable("id") Long id) {
         get(id);
-        return medecinService.getMedecinByDepartement(get(id));
+        return medecinService.getMedecinsByDepartement(get(id).getId());
     }
 }

@@ -1,8 +1,6 @@
 package io.github.nosiguapo.ap4medecins.services;
 
-import io.github.nosiguapo.ap4medecins.entities.Departement;
 import io.github.nosiguapo.ap4medecins.entities.Medecin;
-import io.github.nosiguapo.ap4medecins.entities.Pays;
 import io.github.nosiguapo.ap4medecins.repositories.MedecinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,16 +32,10 @@ public class MedecinService {
         return medecinRepository.findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(nom, nom);
     }
 
-    public List<Medecin> getMedecinByDepartement(Departement departement) {
-        return medecinRepository.findByDepartement(departement);
+    public List<Medecin> getMedecinsByDepartement(Long id) {
+        return medecinRepository.findMedecinByDepartementId(id);
     }
 
-    public List<Medecin> getMedecinByPays(Pays pays) {
-/*
-        return medecinRepository.findByPays(pays);
-*/
-        return null;
-    }
 
     // A list of all domains will be used in order to choose, a single speciality will be sent
     // Since a precise result will be sent, a "LIKE" is unnecessary

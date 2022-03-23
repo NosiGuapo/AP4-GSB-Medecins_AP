@@ -20,7 +20,7 @@ public interface MedecinRepository extends JpaRepository<Medecin, Long> {
 //    List<String> findAllSpecs(@Param("spec_name") String specName);
     @Query("SELECT distinct m.spec FROM Medecin m WHERE m.spec IS NOT NULL") List<String> findAllSpecs(); // Ge
     List<Medecin> findBySpecIgnoreCase(String spec);
-    List<Medecin> findByDepartement(Departement departement);
+    List<Medecin> findMedecinByDepartementId(Long id);
     // POST requests
     void deleteById(@NonNull Long id); // Delete Doctor by its Id
 }

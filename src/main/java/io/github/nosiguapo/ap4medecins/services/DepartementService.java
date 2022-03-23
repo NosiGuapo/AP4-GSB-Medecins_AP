@@ -21,6 +21,10 @@ public class DepartementService {
         return departementRepository.findAllByOrderByNomAsc();
     }
 
+    public List<Departement> getDepartementsByCountryId(Long id){
+        return departementRepository.findDepartementByPaysId(id);
+    }
+
     // The result can be null, Optional parametter must be specified to handle this kind of potential error
     public Optional<Departement> getDepartementById(Long id){
         return departementRepository.findById(id);

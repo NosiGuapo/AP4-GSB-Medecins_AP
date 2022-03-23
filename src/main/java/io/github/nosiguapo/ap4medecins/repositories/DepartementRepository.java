@@ -8,5 +8,6 @@ import java.util.List;
 public interface DepartementRepository extends JpaRepository<Departement, Long> {
     /* Define all SQL commands in here */
     List<Departement> findAllByOrderByNomAsc();
+    List<Departement> findDepartementByPaysId(Long id);
 
 }
