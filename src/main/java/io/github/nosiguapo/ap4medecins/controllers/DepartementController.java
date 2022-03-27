@@ -6,10 +6,7 @@ import io.github.nosiguapo.ap4medecins.services.DepartementService;
 import io.github.nosiguapo.ap4medecins.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -40,5 +37,11 @@ public class DepartementController {
     public List<Medecin> getMedecinsOfDepartement(@PathVariable("id") Long id) {
         get(id);
         return medecinService.getMedecinsByDepartement(get(id).getId());
+    }
+
+    @PostMapping(consumes = {"application/json"})
+    @ResponseStatus(HttpStatus.CREATED)
+    public Departement create(@RequestBody Departement newDepartement) {
+        return departementService.addDepartement(newDepartement);
     }
 }
