@@ -5,6 +5,7 @@ import io.github.nosiguapo.ap4medecins.repositories.MedecinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,8 +48,11 @@ public class MedecinService {
         return medecinRepository.findAllSpecs();
     }
 
-    public Medecin addMedecin(Medecin newMedecin){
-        return medecinRepository.save(newMedecin);
+    @Transactional
+    public Medecin addMedecin(Medecin medecin){
+        Long medecinId = medecinRepository.findMaxId()+1;
+        medecin.setId(medecinId);
+        return medecinRepository.save(medecin);
     }
 
     public boolean deleteMedecinById(Long id){

@@ -1,5 +1,6 @@
 package io.github.nosiguapo.ap4medecins.controllers;
 
+import io.github.nosiguapo.ap4medecins.entities.Departement;
 import io.github.nosiguapo.ap4medecins.entities.Medecin;
 import io.github.nosiguapo.ap4medecins.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,12 @@ public class MedecinController {
         // We check if the doctor exists before executing the POST request
         get(id);
         return medecinService.deleteMedecinById(id);
+    }
+
+    @PostMapping(consumes = {"application/json"})
+    @ResponseStatus(HttpStatus.CREATED)
+    public Medecin create(@RequestBody Medecin newMedecin) {
+        return medecinService.addMedecin(newMedecin);
     }
 
     // Edit doctor
