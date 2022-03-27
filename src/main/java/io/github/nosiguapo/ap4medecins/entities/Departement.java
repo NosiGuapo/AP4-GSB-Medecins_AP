@@ -8,6 +8,8 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -37,7 +39,7 @@ public class Departement {
     @OnDelete(
             action = OnDeleteAction.CASCADE
     )
-    @NotBlank(message="Aucun pays d'appartenance n'est spécifié")
+    @NotNull(message="Aucun pays d'appartenance n'est spécifié")
     private Pays pays;
     @OneToMany(
             mappedBy = "departement"

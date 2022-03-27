@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(
@@ -55,7 +56,7 @@ public class Medecin {
     @OnDelete(
             action = OnDeleteAction.CASCADE
     )
-    @NotBlank(message="Veuillez préciser un département.")
+    @NotNull(message="Veuillez préciser un département.")
     private Departement departement;
 
     public Medecin(Long id, String nom, String prenom, String adresse, String tel, String spec, Departement departement) {
