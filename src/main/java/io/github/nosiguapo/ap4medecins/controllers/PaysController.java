@@ -78,4 +78,11 @@ public class PaysController {
     public Pays create(@RequestBody Pays newCountry) {
         return paysService.addCountry(newCountry);
     }
+
+    @PutMapping()
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Pays edit(@RequestBody Pays newCountry) {
+        get(newCountry.getId());
+        return paysService.editCountry(newCountry);
+    }
 }
