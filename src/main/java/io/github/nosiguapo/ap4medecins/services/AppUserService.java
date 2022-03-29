@@ -23,8 +23,8 @@ public class AppUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser user = appUserRepository.findByUsername(username);
-        if (user == null){
+        AppUser aUser = appUserRepository.findByUsername(username);
+        if (aUser == null){
             log.error("User not found.");
             throw new UsernameNotFoundException("User not found");
         } else {
@@ -33,8 +33,8 @@ public class AppUserService implements UserDetailsService {
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         // Returning a springsecurity user
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
+                aUser.getUsername(),
+                aUser.getPassword(),
                 authorities
         );
     }
