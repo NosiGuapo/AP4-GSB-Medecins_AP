@@ -1,12 +1,10 @@
 package io.github.nosiguapo.ap4medecins.controllers;
 
 import io.github.nosiguapo.ap4medecins.entities.AppUser;
-import io.github.nosiguapo.ap4medecins.entities.Role;
 import io.github.nosiguapo.ap4medecins.services.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -28,11 +26,5 @@ public class AppUserController {
     public ResponseEntity<AppUser>saveUser(@RequestBody AppUser user){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/gsb/utilisateurs").toUriString());
         return ResponseEntity.created(uri).body(appUserService.saveUser(user));
-    }
-
-    @PostMapping(path = "/roles", consumes = {"application/json"})
-    public ResponseEntity<Role>saveRole(@RequestBody Role role){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/gsb/roles").toUriString());
-        return ResponseEntity.created(uri).body(appUserService.saveRole(role));
     }
 }

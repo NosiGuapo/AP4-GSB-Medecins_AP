@@ -15,16 +15,7 @@ import java.util.Date;
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Invitation {
     @Id
-    @SequenceGenerator(
-            name = "invitations_id_seq",
-            sequenceName = "invitations_id_seq",
-            schema = "gsb_api",
-            allocationSize = 1
-    )
-    @Column(
-            name = "ID",
-            columnDefinition = "serial"
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String key;
     private Integer maxuses;
