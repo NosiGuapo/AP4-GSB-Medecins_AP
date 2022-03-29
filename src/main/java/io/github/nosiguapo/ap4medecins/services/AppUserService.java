@@ -1,7 +1,9 @@
 package io.github.nosiguapo.ap4medecins.services;
 
 import io.github.nosiguapo.ap4medecins.entities.AppUser;
+import io.github.nosiguapo.ap4medecins.entities.Role;
 import io.github.nosiguapo.ap4medecins.repositories.AppUserRepository;
+import io.github.nosiguapo.ap4medecins.repositories.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +23,7 @@ import java.util.List;
 @Slf4j
 public class AppUserService implements UserDetailsService {
     private final AppUserRepository appUserRepository;
+    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -46,6 +49,18 @@ public class AppUserService implements UserDetailsService {
         // We encrypt the password before saving the user
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return appUserRepository.save(user);
+    }
+
+    public Role saveRole(Role role){
+        return roleRepository.save(role);
+    }
+
+    public void addRoleToUser(String username, String rolename){
+        log.info("Adding role {} to user {}", rolename, username);
+        AppUser user = appUserRepository.findByUsername(username);
+        Role role = roleRepository.findByName(rolename);
+
+        user.getRoles().add(role);
     }
 
     public AppUser getUser(String username){

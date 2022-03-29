@@ -5,7 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity @Data @NoArgsConstructor @AllArgsConstructor
 @Table(schema = "gsb_api")
@@ -17,7 +18,6 @@ public class AppUser {
     private String lname;
     private String username;
     private String password;
-    private boolean isAdmin;
-    @OneToMany(mappedBy = "owner")
-    private List<Invitation> invitations;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 }

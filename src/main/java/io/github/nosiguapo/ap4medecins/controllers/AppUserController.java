@@ -11,8 +11,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-@RestController @RequiredArgsConstructor
-@RequestMapping("/gsb/")
+@RestController
+@RequestMapping("/gsb")
+@RequiredArgsConstructor
 public class AppUserController {
     private final AppUserService appUserService;
 

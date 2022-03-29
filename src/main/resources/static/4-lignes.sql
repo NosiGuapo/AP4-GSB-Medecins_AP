@@ -1041,11 +1041,11 @@ insert into medecins(nom,prenom,adresse,tel,spec,departement_id) values('Armouch
 -- | In order for an user to register and access those admin operations, an invitation will be needed.
 --
 
-insert into app_user(id, fname, lname, password, username, is_admin)
-values (1, 'Illyn', 'Danil', 'il_danil', '12345', false);
-
-insert into app_user(id, fname, lname, password, username, is_admin)
-values (2, 'Baley', 'Blaze', 'finneganIII', 'aaaa', true);
+-- insert into app_user(id, fname, lname, password, username, is_admin)
+-- values (1, 'Illyn', 'Danil', 'il_danil', '12345', false);
+--
+-- insert into app_user(id, fname, lname, password, username, is_admin)
+-- values (2, 'Baley', 'Blaze', 'finneganIII', 'aaaa', true);
 
 
 --
@@ -1064,5 +1064,5 @@ values (2, 'Baley', 'Blaze', 'finneganIII', 'aaaa', true);
 
 /*insert into invitations(id, creation, currentuses, key, maxuses, owner_id)
 values (1, '2022-02-12', 0, 'Ae1o7lKS1p', 2, 1);*/
-insert into invitations(id, creation, currentuses, key, maxuses, owner_id)
-values (2, '2022-02-12', 2, '75eOXqp4xX', 3, 2);
+-- insert into invitations(id, creation, currentuses, key, maxuses, owner_id)
+-- values (2, '2022-02-12', 2, '75eOXqp4xX', 3, 2);

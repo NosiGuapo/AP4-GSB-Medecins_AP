@@ -54,7 +54,7 @@ public class AuthFilter extends UsernamePasswordAuthenticationFilter {
                 .withSubject(user.getUsername())
                 // In milliseconds: 60 sec * 65 (Ap. an hour long token)
                 .withExpiresAt(new Date(System.currentTimeMillis()+ 1000 * 60 * 65))
-                .withIssuer(request.getRequestURI().toString())
+                .withIssuer(request.getRequestURI())
                 .withClaim(
                         "roles",
                         user.getAuthorities().stream().map(
@@ -68,7 +68,7 @@ public class AuthFilter extends UsernamePasswordAuthenticationFilter {
                 .withSubject(user.getUsername())
                 // A month long (Refresh token is always more persistant)
                 .withExpiresAt(new Date(System.currentTimeMillis()+ 1000L * 3600 * 24 * 31))
-                .withIssuer(request.getRequestURI().toString())
+                .withIssuer(request.getRequestURI())
                 .withClaim(
                         "roles",
                         user.getAuthorities().stream().map(
