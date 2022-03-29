@@ -1,14 +1,15 @@
 package io.github.nosiguapo.ap4medecins;
 
-import io.github.nosiguapo.ap4medecins.entities.AppUser;
+/*import io.github.nosiguapo.ap4medecins.entities.AppUser;
 import io.github.nosiguapo.ap4medecins.services.AppUserService;
 import org.apache.catalina.User;
 import org.springframework.boot.CommandLineRunner;
+import java.util.ArrayList;*/
+import org.springframework.context.annotation.Bean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import java.util.ArrayList;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class Ap4MedecinsApplication {
@@ -23,5 +24,10 @@ public class Ap4MedecinsApplication {
             appUserService.saveUser(new AppUser(null, "John", "Doe", "jdoe", "JIAJFOKOFJkfoejf", true, new ArrayList<>()));
         };
     }*/
+
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }
 
