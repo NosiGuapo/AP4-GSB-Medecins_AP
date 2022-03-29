@@ -2,6 +2,7 @@ package io.github.nosiguapo.ap4medecins.controllers;
 
 import io.github.nosiguapo.ap4medecins.entities.AppUser;
 import io.github.nosiguapo.ap4medecins.services.AppUserService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,4 +29,16 @@ public class AppUserController {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/gsb/utilisateurs").toUriString());
         return ResponseEntity.created(uri).body(appUserService.saveUser(user));
     }
+
+    @PostMapping("/role/addtouser")
+    public ResponseEntity<?>addRoleToUser(@RequestBody RoleToUserForm form){
+        appUserService.addRoleToUser(form.getUsername(), form.getRolename());
+        return ResponseEntity.ok().build();
+    }
+}
+
+@Data
+class RoleToUserForm{
+    private String username;
+    private String rolename;
 }
