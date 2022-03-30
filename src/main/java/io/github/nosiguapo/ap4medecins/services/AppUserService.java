@@ -36,6 +36,10 @@ public class AppUserService implements UserDetailsService {
             log.info("User {} found.", username);
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        // Giving user roles to Tokens
+        for (Role role : aUser.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
         // Returning a springsecurity user
         return new org.springframework.security.core.userdetails.User(
                 aUser.getUsername(),

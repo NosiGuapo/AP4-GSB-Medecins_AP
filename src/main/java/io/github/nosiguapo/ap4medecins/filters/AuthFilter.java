@@ -45,6 +45,10 @@ public class AuthFilter extends UsernamePasswordAuthenticationFilter {
     // When login successful
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
+        // / Token test
+        // |
+        // | https://jwt.io/
+
         // Giving access (and refresh) token once login successful
         // The user specified here is the Spring boot security user, not the AppUser we created
         User user = (User)authentication.getPrincipal();
