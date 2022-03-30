@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Allowing anyone to log in
         // (Allows /gsb/login/** AND /gsb/login itself)
-        http.authorizeRequests().antMatchers("/gsb/login/**").permitAll();
+        http.authorizeRequests().antMatchers("/gsb/login/**", "/gsb/token/refresh/**").permitAll();
 
         // / Permits
         // | Members can execute all GET requests

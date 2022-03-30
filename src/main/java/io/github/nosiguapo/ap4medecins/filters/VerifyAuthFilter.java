@@ -32,7 +32,7 @@ public class VerifyAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if (request.getServletPath().equals("/gsb/login")){
+        if (request.getServletPath().equals("/gsb/login") || request.getServletPath().equals("gsb/token/refresh")){
             // Regular login
             filterChain.doFilter(request, response);
         } else {
