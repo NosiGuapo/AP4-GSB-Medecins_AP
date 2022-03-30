@@ -1040,16 +1040,14 @@ insert into medecins(nom,prenom,adresse,tel,spec,departement_id) values('Armouch
 -- | A registration page will be avaible on the final application.
 -- | In order for an user to register and access those admin operations, an invitation will be needed.
 --
-
--- insert into app_user(id, fname, lname, password, username, is_admin)
--- values (1, 'Illyn', 'Danil', 'il_danil', '12345', false);
+-- | No user will be defined in the SQL directly, since we want to add them a role immediately.
+-- | The most convenient way to do it is to instanciate these users at the startup of the Spring boot App
 --
--- insert into app_user(id, fname, lname, password, username, is_admin)
--- values (2, 'Baley', 'Blaze', 'finneganIII', 'aaaa', true);
 
 
 --
 --  / Invitations
+-- | (Abandonned part of the project thus far, might come back on further project updates)
 -- |
 -- | Pre-existing users will be able to create invites
 -- | An invite from an already existing administrator is required in order for someone to register in the database
