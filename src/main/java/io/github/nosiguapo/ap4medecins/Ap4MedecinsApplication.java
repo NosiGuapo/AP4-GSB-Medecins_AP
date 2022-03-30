@@ -3,7 +3,6 @@ package io.github.nosiguapo.ap4medecins;
 import io.github.nosiguapo.ap4medecins.entities.AppUser;
 import io.github.nosiguapo.ap4medecins.entities.Role;
 import io.github.nosiguapo.ap4medecins.services.AppUserService;
-import org.apache.catalina.User;
 import org.springframework.boot.CommandLineRunner;
 import java.util.ArrayList;
 
@@ -23,15 +22,15 @@ public class Ap4MedecinsApplication {
     @Bean
     CommandLineRunner run(AppUserService appUserService) {
         return args -> {
-//            appUserService.saveRole(new Role(null, "ROLE_MEMBRE"));
-//            appUserService.saveRole(new Role(null, "ROLE_ADMIN"));
-//
-//            appUserService.saveUser(
-//                    new AppUser(null, "John", "Doe", "jdoe", "aaa", new ArrayList<>())
-//            );
-//            appUserService.saveUser(
-//                    new AppUser(null, "Blaise", "Bailey", "bfinnegan", "12345", new ArrayList<>())
-//            );
+            appUserService.saveRole(new Role(null, "ROLE_MEMBRE"));
+            appUserService.saveRole(new Role(null, "ROLE_ADMIN"));
+
+            appUserService.saveUser(
+                    new AppUser(null, "John", "Doe", "jdoe", "aaa", new ArrayList<>())
+            );
+            appUserService.saveUser(
+                    new AppUser(null, "Blaise", "Bailey", "bfinnegan", "12345", new ArrayList<>())
+            );
 
             appUserService.addRoleToUser("jdoe", "ROLE_MEMBRE");
             appUserService.addRoleToUser("bfinnegan", "ROLE_MEMBRE");
