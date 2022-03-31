@@ -68,6 +68,9 @@ public class AppUserController {
                 AppUser aUser = appUserService.getUser(username);
                 String access_token = JWT.create()
                         .withSubject(aUser.getUsername())
+                        .withClaim("username", aUser.getUsername())
+                        .withClaim("fname", aUser.getFname())
+                        .withClaim("lname", aUser.getLname())
                         // In milliseconds: 60 sec * 65 (Ap. an hour long refresh_token)
                         .withExpiresAt(new Date(System.currentTimeMillis()+ 1000 * 60 * 65))
                         .withIssuer(request.getRequestURI())

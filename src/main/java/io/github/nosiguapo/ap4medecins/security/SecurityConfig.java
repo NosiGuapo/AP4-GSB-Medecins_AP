@@ -2,6 +2,7 @@ package io.github.nosiguapo.ap4medecins.security;
 
 import io.github.nosiguapo.ap4medecins.filters.AuthFilter;
 import io.github.nosiguapo.ap4medecins.filters.VerifyAuthFilter;
+import io.github.nosiguapo.ap4medecins.services.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // Beans to pre-existing spring security classes
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final AppUserService appUserService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -39,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // We instanciate this object in order to change the login page URL
         // (other propreties could be edited)
-        AuthFilter authFilter = new AuthFilter(authenticationManagerBean());
+        AuthFilter authFilter = new AuthFilter(authenticationManagerBean(), appUserService);
         authFilter.setFilterProcessesUrl("/gsb/login");
 
         http.csrf().disable();
