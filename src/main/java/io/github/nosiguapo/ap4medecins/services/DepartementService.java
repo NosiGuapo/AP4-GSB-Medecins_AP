@@ -40,4 +40,9 @@ public class DepartementService {
         departement.setId(departementId);
         return departementRepository.save(departement);
     }
+
+    public boolean deleteDepartement(Long id){
+        departementRepository.deleteById(id);
+        return true;
+    }
 }

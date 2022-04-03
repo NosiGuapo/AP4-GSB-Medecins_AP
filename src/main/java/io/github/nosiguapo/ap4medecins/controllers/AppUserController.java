@@ -73,6 +73,7 @@ public class AppUserController {
                         .withClaim("lname", aUser.getLname())
                         // In milliseconds: 60 sec * 65 (Ap. an hour long refresh_token)
                         .withExpiresAt(new Date(System.currentTimeMillis()+ 1000 * 60 * 65))
+//                        .withExpiresAt(new Date(System.currentTimeMillis()+ 1000 * 5))
                         .withIssuer(request.getRequestURI())
                         .withClaim(
                                 "roles",

@@ -44,4 +44,10 @@ public class DepartementController {
     public Departement create(@RequestBody Departement newDepartement) {
         return departementService.addDepartement(newDepartement);
     }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable Long id) {
+        get(id);
+        return departementService.deleteDepartement(id);
+    }
 }
