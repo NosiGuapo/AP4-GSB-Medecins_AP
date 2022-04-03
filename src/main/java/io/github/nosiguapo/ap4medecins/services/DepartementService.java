@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -44,5 +45,10 @@ public class DepartementService {
     public boolean deleteDepartement(Long id){
         departementRepository.deleteById(id);
         return true;
+    }
+
+    @Transactional
+    public Departement editDepartement(Departement departement){
+        return departementRepository.save(departement);
     }
 }

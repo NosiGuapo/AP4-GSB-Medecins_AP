@@ -2,6 +2,7 @@ package io.github.nosiguapo.ap4medecins.controllers;
 
 import io.github.nosiguapo.ap4medecins.entities.Departement;
 import io.github.nosiguapo.ap4medecins.entities.Medecin;
+import io.github.nosiguapo.ap4medecins.entities.Pays;
 import io.github.nosiguapo.ap4medecins.services.DepartementService;
 import io.github.nosiguapo.ap4medecins.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,12 @@ public class DepartementController {
     public boolean delete(@PathVariable Long id) {
         get(id);
         return departementService.deleteDepartement(id);
+    }
+
+    @PutMapping()
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Departement edit(@RequestBody Departement departement) {
+        get(departement.getId());
+        return departementService.editDepartement(departement);
     }
 }
