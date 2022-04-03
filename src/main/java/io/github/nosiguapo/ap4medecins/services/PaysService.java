@@ -23,7 +23,7 @@ public class PaysService {
     }
 
     public List<Pays> getAllPays(){
-        return paysRepository.findAll();
+        return paysRepository.findAllByOrderByNomAsc();
     }
 
     // The result can be null, Optional parametter must be specified to handle this kind of potential error

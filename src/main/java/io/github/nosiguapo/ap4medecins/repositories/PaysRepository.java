@@ -14,6 +14,7 @@ public interface PaysRepository extends JpaRepository<Pays, Long> {
     // POST
     void deleteById(@NonNull Long id);
     List<Pays> findByNomIgnoreCase(String name);
+    List<Pays> findAllByOrderByNomAsc();
     @Query("SELECT max(p.id) FROM Pays p") Long findMaxId(); // Get all archived (fully used) invitations
 
 }
