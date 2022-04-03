@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(
@@ -37,20 +38,22 @@ public class Medecin {
     private Long id;
 
     @NotBlank(message="Veuillez préciser un nom.")
-    @Length(min = 2, message = "Le nom doit comporter au moins 3 caractères")
+    @Pattern(regexp = "^[a-zA-Z\\sàâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ]{2,30}$", message = "Le nom ne doit contenir que des lettres et des espaces")
     private String nom;
 
     @NotBlank(message="Veuillez préciser un prénom.")
-    @Length(min = 2, message = "Le prénom doit comporter au moins 3 caractères")
+    @Pattern(regexp = "^[a-zA-Z\\sàâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ]{2,30}$", message = "Le prénom ne doit contenir que des lettres et des espaces")
     private String prenom;
 
     @NotBlank(message="Veuillez préciser une adresse.")
-    @Length(min = 10, message = "L'adresse doit comporter au moins une dizaine de caractères'")
+    @Pattern(regexp = "^[a-zA-Z0-9\\sàâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ,]{10,50}$", message = "Uniquement des lettres, chiffres et espaces")
     private String adresse;
 
     @NotBlank(message="Veuillez préciser un numéro de téléphone.")
-    // Regex will be used on this category
+    @Pattern(regexp = "^[0-9]{1,14}$", message = "Seulement des chiffres entre 1 et 14 caractères")
     private String tel;
+
+    @Pattern(regexp = "^[a-zA-Z\\s]*$", message = "Uniquement des lettres et des espaces sont autorisés.")
     private String spec;
     @ManyToOne
     @OnDelete(

@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Entity
@@ -32,7 +33,7 @@ public class Departement {
     private Long id;
 
     @NotBlank(message="Veuillez préciser un nom.")
-    @Length(min = 2, message = "Le nom doit comporter au moins 2 caractères")
+    @Pattern(regexp = "^[a-zA-Z0-9\\sàâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ-]{3,40}$", message = "Uniquement des lettres, (-) et espaces")
     private String nom;
 
     @ManyToOne

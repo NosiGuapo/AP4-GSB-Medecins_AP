@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Entity
@@ -27,7 +28,7 @@ public class Pays {
     private Long id;
 
     @NotBlank(message="Veuillez préciser un nom.")
-    @Length(min = 4, message = "Le nom doit comporter au moins 3 caractères")
+    @Pattern(regexp = "^[A-Za-z\\sàâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ]{2,20}$", message = "Le nom doit contenir entre 2 et 20 caractères, uniquement des lettres ou des espaces")
     private String nom;
 
     @OneToMany(
