@@ -36,8 +36,8 @@ public class DepartementService {
 
     @Transactional
     public Departement addDepartement(Departement departement){
-        Long departementId = departementRepository.findMaxId()+1;
-        departement.setId(departementId);
+//        Long departementId = departementRepository.findMaxId()+1;
+//        departement.setId(departementId);
         return departementRepository.save(departement);
     }
 

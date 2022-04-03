@@ -50,8 +50,8 @@ public class MedecinService {
 
     @Transactional
     public Medecin addMedecin(Medecin medecin){
-        Long medecinId = medecinRepository.findMaxId()+1;
-        medecin.setId(medecinId);
+//        Long medecinId = medecinRepository.findMaxId()+1;
+//        medecin.setId(medecinId);
         return medecinRepository.save(medecin);
     }
 

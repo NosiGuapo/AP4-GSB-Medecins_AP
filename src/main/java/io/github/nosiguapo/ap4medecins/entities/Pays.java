@@ -25,6 +25,7 @@ public class Pays {
             name = "ID",
             columnDefinition = "serial"
     )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank(message="Veuillez préciser un nom.")

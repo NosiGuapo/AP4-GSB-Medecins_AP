@@ -40,8 +40,8 @@ public class PaysService {
     public Pays addCountry(Pays country){
         // If a country already exists with a similar name, we send an error
         if (paysRepository.findByNomIgnoreCase(country.getNom()).isEmpty()){
-            Long countryId = paysRepository.findMaxId()+1;
-            country.setId(countryId);
+//            Long countryId = paysRepository.findMaxId()+1;
+//            country.setId(countryId);
             return paysRepository.save(country);
         } else {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
