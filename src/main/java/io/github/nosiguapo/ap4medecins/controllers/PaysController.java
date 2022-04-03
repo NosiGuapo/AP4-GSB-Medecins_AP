@@ -81,8 +81,8 @@ public class PaysController {
 
     @PutMapping()
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Pays edit(@RequestBody Pays newCountry) {
-        get(newCountry.getId());
-        return paysService.editCountry(newCountry);
+    public Pays edit(@RequestBody Pays country) {
+        get(country.getId());
+        return paysService.editCountry(country);
     }
 }
