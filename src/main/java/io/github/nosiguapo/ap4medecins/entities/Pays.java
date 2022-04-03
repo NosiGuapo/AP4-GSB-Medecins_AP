@@ -1,7 +1,6 @@
 package io.github.nosiguapo.ap4medecins.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
