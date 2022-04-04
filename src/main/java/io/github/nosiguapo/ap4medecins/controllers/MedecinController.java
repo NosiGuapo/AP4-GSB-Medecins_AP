@@ -1,6 +1,5 @@
 package io.github.nosiguapo.ap4medecins.controllers;
 
-import io.github.nosiguapo.ap4medecins.entities.Departement;
 import io.github.nosiguapo.ap4medecins.entities.Medecin;
 import io.github.nosiguapo.ap4medecins.services.MedecinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 // Map the request to a certain url
@@ -68,16 +65,10 @@ public class MedecinController {
     }
 
     // Edit doctor
-    @PutMapping("/{id}")
-    public Optional<Medecin> editDoctor(@Valid @PathVariable Long id, @RequestBody Medecin newDoctor) {
-        return Optional.ofNullable(medecinService.getMedecinByid(id).map(medecin -> {
-            medecin.setNom(newDoctor.getNom());
-            medecin.setPrenom(newDoctor.getPrenom());
-            medecin.setSpec(newDoctor.getSpec());
-            medecin.setAdresse(newDoctor.getAdresse());
-            medecin.setTel(newDoctor.getTel());
-            medecin.setDepartement(newDoctor.getDepartement());
-            return medecinService.save(medecin);
-        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+    @PutMapping()
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Medecin edit(@RequestBody Medecin medecin) {
+        get(medecin.getId());
+        return medecinService.editMedecin(medecin);
     }
 }

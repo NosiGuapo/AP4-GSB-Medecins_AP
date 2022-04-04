@@ -60,8 +60,8 @@ public class MedecinService {
         return true;
     }
 
-    // Edit doctor
-    public Medecin save(Medecin newDoctor) {
-        return medecinRepository.save(newDoctor);
+    @Transactional
+    public Medecin editMedecin(Medecin medecin){
+        return medecinRepository.save(medecin);
     }
 }
