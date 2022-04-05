@@ -44,45 +44,38 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         AuthFilter authFilter = new AuthFilter(authenticationManagerBean(), appUserService);
         authFilter.setFilterProcessesUrl("/gsb/login");
 
-        http.csrf().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http
+                .csrf().disable()
 
-        // Allowing anyone to log in
-        // (Allows /gsb/login/** AND /gsb/login itself)
-        http.authorizeRequests().antMatchers("/gsb/login/**", "/gsb/token/refresh/**").permitAll();
+                // / Permits
+                // | Members can execute all GET requests
+                // | Only admins may perform POST, PUT and DELETE requests
+                // |
+                // | We split all categories to apply further modifications with much more ease
+                // | (E.g: Restricting doctor data access to Non-admin, ...)
+                .authorizeRequests()
+                .antMatchers(DELETE,"/gsb/**").hasAuthority("ROLE_ADMIN")
+                .antMatchers(PUT,"/gsb/**").hasAuthority("ROLE_ADMIN")
+                .antMatchers(POST,"/gsb/**").hasAuthority("ROLE_ADMIN")
+                .antMatchers(GET,"/gsb/**").hasAnyAuthority("ROLE_MEMBRE", "ROLE_ADMIN")
 
-        // / Permits
-        // | Members can execute all GET requests
-        // | Only admins may perform POST, PUT and DELETE requests
-        // |
-        // | We split all categories to apply further modifications with much more ease
-        // | (E.g: Restricting doctor data access to Non-admin, ...)
-        http.authorizeRequests().antMatchers(GET, "gsb/medecins/**").hasAnyAuthority("ROLE_MEMBRE");
-        http.authorizeRequests().antMatchers(GET, "gsb/departements/**").hasAnyAuthority("ROLE_MEMBRE");
-        http.authorizeRequests().antMatchers(GET, "gsb/pays/**").hasAnyAuthority("ROLE_MEMBRE");
+                // Allowing anyone to log in
+                // (Allows /gsb/login/** AND /gsb/login itself)
+                .antMatchers("/gsb/login/**", "/gsb/token/refresh/**").permitAll()
 
-        http.authorizeRequests().antMatchers(GET, "gsb/utilisateurs").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(GET, "gsb/roles").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(PUT, "gsb/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(DELETE, "gsb/**").hasAnyAuthority("ROLE_ADMIN");
-        // A POST request is sent in order to log in, we split POSTS
-        http.authorizeRequests().antMatchers(POST, "gsb/medecins/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(POST, "gsb/pays/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(POST, "gsb/departements/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(POST, "gsb/roles").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(POST, "gsb/utilisateurs").hasAnyAuthority("ROLE_ADMIN");
+                // Restric all other operations
+                // Important to place this (and filter) after the previous antMatchers
+                .anyRequest().authenticated()
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
 
-        // Restric all other operations
-        // Important to place this (and filter) after the previous antMatchers
-        http.authorizeRequests().anyRequest().authenticated();
-
-        // / Filters
-        // | Since we have modified the authFilter earlier on (to modify login page URL, we pass the object)
+                // / Filters
+                // | Since we have modified the authFilter earlier on (to modify login page URL, we pass the object)
 //        http.addFilter(new AuthFilter(authenticationManagerBean()));
-        // Authentication
-        http.addFilter(authFilter);
-        // Authorization
-        http.addFilterBefore(new VerifyAuthFilter(), UsernamePasswordAuthenticationFilter.class);
+                // Authentication
+                .addFilterBefore(new VerifyAuthFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilter(authFilter);
     }
 
     @Bean
